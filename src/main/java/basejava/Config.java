@@ -22,8 +22,8 @@ public class Config {
       try (InputStream is = new FileInputStream(fileWithProperties)) {
         properties.load(is);
         storageDir = new File(properties.getProperty("storage.dir"));
-//        storage = new SqlStorage(properties.getProperty("db.url"),
-        storage = new SqlStorage(properties.getProperty(System.getenv("DATABASE_URL")),
+        storage = new SqlStorage(properties.getProperty("db.url"),
+//        storage = new SqlStorage(properties.getProperty(System.getenv("DATABASE_URL")),
             properties.getProperty("db.user"),
             properties.getProperty("db.password"));
       } catch (IOException e) {

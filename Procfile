@@ -1,1 +1,1 @@
-web: sh target/bin/webapp
+web: sh -Ddb.url=${DATABASE_URL} target/bin/webapp
