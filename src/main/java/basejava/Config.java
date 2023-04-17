@@ -27,14 +27,23 @@ public class Config {
       File fileWithProperties = new File(getHomeDir(), "config/resumes.properties");
 
       try (InputStream is = new FileInputStream(fileWithProperties)) {
+
         properties.load(is);
-        storageDir = new File(properties.getProperty("storage.dir"));
 //        storage = new SqlStorage(properties.getProperty("db.url"),
+
+        storageDir = new File(properties.getProperty("storage.dir"));
+
         String dbUrl = System.getenv("DATABASE_URL");
-        System.out.println("DATABASE_URL is [" + dbUrl + "]");
-        storage = new SqlStorage(properties.getProperty(dbUrl),
-            properties.getProperty("db.user"),
-            properties.getProperty("db.password"));
+
+        String hostAndDB = "jdbc:postgresql://" + dbUrl.split("@")[1];
+        String dbUser = dbUrl.split("//")[1].split(":")[0];
+        String dbPass = dbUrl.split("//")[1].split(":")[1].split("@")[0];
+
+        storage = new SqlStorage(
+            properties.getProperty(hostAndDB),
+            properties.getProperty(dbUser),
+            properties.getProperty(dbPass));
+
       } catch (IOException e) {
 
         System.out.println("Error while getting configs: " + e.getMessage());
