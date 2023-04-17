@@ -27,7 +27,6 @@ public class SqlStorage implements Storage {
 
     System.out.println("dbUrl = " + dbUrl);
     System.out.println("dbUser = " + dbUser);
-    System.out.println("dbPassword = " + dbPassword);
 
     try {
       Class.forName("org.postgresql.Driver");

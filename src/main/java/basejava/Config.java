@@ -41,10 +41,7 @@ public class Config {
         String dbUser = dbUrl.split("//")[1].split(":")[0];
         String dbPass = dbUrl.split("//")[1].split(":")[1].split("@")[0];
 
-        storage = new SqlStorage(
-            properties.getProperty(hostAndDB),
-            properties.getProperty(dbUser),
-            properties.getProperty(dbPass));
+        storage = new SqlStorage(hostAndDB, dbUser, dbPass);
 
       } catch (IOException e) {
 
