@@ -35,6 +35,8 @@ public class Config {
 
         String dbUrl = System.getenv("DATABASE_URL");
 
+        System.out.println("dbUrl = " + dbUrl);
+
         String hostAndDB = "jdbc:postgresql://" + dbUrl.split("@")[1];
         String dbUser = dbUrl.split("//")[1].split(":")[0];
         String dbPass = dbUrl.split("//")[1].split(":")[1].split("@")[0];
