@@ -16,15 +16,23 @@ import basejava.model.Section;
 import basejava.model.SectionType;
 import basejava.sql.SqlHelper;
 import basejava.util.JsonParser;
+import java.util.logging.Logger;
+import lombok.extern.slf4j.Slf4j;
 
 public class SqlStorage implements Storage {
 
   private final SqlHelper sqlHelper;
 
   public SqlStorage(String dbUrl, String dbUser, String dbPassword) {
+
+    System.out.println("dbUrl = " + dbUrl);
+    System.out.println("dbUser = " + dbUser);
+    System.out.println("dbPassword = " + dbPassword);
+
     try {
       Class.forName("org.postgresql.Driver");
     } catch (ClassNotFoundException e) {
+      System.out.println("org.postgresql.Driver not found");
       throw new IllegalStateException(e);
     }
     sqlHelper = new SqlHelper(() -> DriverManager.getConnection(dbUrl, dbUser, dbPassword));
